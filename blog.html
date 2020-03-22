@@ -23,6 +23,24 @@
     <link rel="stylesheet" href="css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="favicon.png">
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+          $.ajax({
+            url: "http://localhost:8881/category/findAll",
+            type: "GET",
+            dataType: "json",
+            success: function (resultData) {
+              var data = resultData.data;
+              var itemhtml = "";
+              for(var i in data){
+                itemhtml += '<option value="'+data[i].id+'">'+data[i].name+'</option>'
+              }
+              $("#categoryid").html(itemhtml);
+            }
+          });
+        });
+    </script>
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
